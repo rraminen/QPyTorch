@@ -1,6 +1,9 @@
 #include "quant_kernel.h"
 #include "sim_helper.cu"
 
+#ifdef __HIP_PLATFORM_AMD__
+#define __forceinline__ inline __attribute__((always_inline))
+#endif
 
 template <typename T>
 __device__ __forceinline__ T clamp_helper(T a, T min, T max) {

@@ -1,6 +1,10 @@
 #define FLOAT_TO_BITS(x) (*reinterpret_cast<unsigned int*>(x))
 #define BITS_TO_FLOAT(x) (*reinterpret_cast<float*>(x))
 
+#ifdef __HIP_PLATFORM_AMD__
+#define __forceinline__ inline __attribute__((always_inline))
+#endif
+
 __device__ __forceinline__ unsigned int extract_exponent(float *a) {
   unsigned int temp = *(reinterpret_cast<unsigned int*>(a));
   temp = (temp << 1 >> 24); // single preciision, 1 sign bit, 23 mantissa bits
