@@ -1,8 +1,10 @@
 #define FLOAT_TO_BITS(x) (*reinterpret_cast<unsigned int*>(x))
 #define BITS_TO_FLOAT(x) (*reinterpret_cast<float*>(x))
 
-#ifdef __HIP_PLATFORM_AMD__
+#ifdef __HIP__
+#ifndef __forceinline__
 #define __forceinline__ inline __attribute__((always_inline))
+#endif
 #endif
 
 __device__ __forceinline__ unsigned int extract_exponent(float *a) {

@@ -1,8 +1,10 @@
 #include "quant_kernel.h"
 #include "sim_helper.cu"
 
-#ifdef __HIP_PLATFORM_AMD__
+#ifdef __HIP__
+#ifndef __forceinline__
 #define __forceinline__ inline __attribute__((always_inline))
+#endif
 #endif
 
 template <typename T>
