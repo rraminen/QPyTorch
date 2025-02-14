@@ -28,6 +28,7 @@ if torch.cuda.is_available():
             os.path.join(current_path, "quant_cuda/fixed_point_kernel.cu"),
             os.path.join(current_path, "quant_cuda/quant.cu"),
         ],
+        extra_include_paths=[os.path.join(current_path, "quant_cuda")],
     )
 else:
     quant_cuda = quant_cpu
